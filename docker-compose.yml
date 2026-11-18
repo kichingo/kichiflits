@@ -1,4 +1,4 @@
-name: media-stack
+name: kichiflits
 
 # Stack de medios auto-hospedado con acceso externo via subpaths.
 # Reverse proxy: Caddy con Caddyfile estático (./caddy/Caddyfile).
@@ -49,7 +49,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Argentina/Mendoza
+      - TZ=${TZ}
       - AUTO_UPDATE=true
     volumes:
       - ${CONFIG_DIR:-./config}/jackett:/config
@@ -78,7 +78,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Argentina/Mendoza
+      - TZ=${TZ}
     volumes:
       - ${CONFIG_DIR:-./config}/sonarr:/config
       # TRaSH layout: Sonarr ve /data entero para que los hardlinks funcionen
@@ -95,7 +95,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Argentina/Mendoza
+      - TZ=${TZ}
     volumes:
       - ${CONFIG_DIR:-./config}/radarr:/config
       - ${DATA_DIR:-./data}:/data
@@ -110,7 +110,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Argentina/Mendoza
+      - TZ=${TZ}
     volumes:
       - ${CONFIG_DIR:-./config}/bazarr:/config
       # Bazarr solo necesita ver la biblioteca final.
@@ -134,7 +134,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Argentina/Mendoza
+      - TZ=${TZ}
       - WEBUI_PORT=8080
     volumes:
       - ${CONFIG_DIR:-./config}/qbittorrent:/config
@@ -152,7 +152,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Argentina/Mendoza
+      - TZ=${TZ}
       - JELLYFIN_PublishedServerUrl=http://localhost:8096
     volumes:
       - ${CONFIG_DIR:-./config}/jellyfin:/config
@@ -168,7 +168,7 @@ services:
     container_name: jellyseerr
     restart: unless-stopped
     environment:
-      - TZ=America/Argentina/Mendoza
+      - TZ=${TZ}
       - LOG_LEVEL=info
     volumes:
       - ${CONFIG_DIR:-./config}/jellyseerr:/app/config
@@ -185,7 +185,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Argentina/Mendoza
+      - TZ=${TZ}
       - APPLICATION_ROOT=/wizarr
     volumes:
       - ${CONFIG_DIR:-./config}/wizarr:/config
